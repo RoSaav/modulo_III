@@ -4,3 +4,7 @@ matplotlib
 sklearn
 feature_engine
 joblib
+requests
+fastapi
+uvicorn
+names
