@@ -4,19 +4,20 @@ import re
 from sklearn.base import BaseEstimator, TransformerMixin
 from typing import List
 
+PATH_TO_DATA = "data/"
+
+
 class ExtractCabin(BaseEstimator, TransformerMixin):
-    """Connects to the next available port.
+    """Extract the Cabin Letter.
 
     Args:
-      minimum: A port value greater or equal to 1024.
 
     Returns:
-      The new minimum port.
+      X: dataframe with new variable Cabin_letter, if exist cabin.
 
     Raises:
-
+      There is not variable cabin
     """
-    
     def __init__(self):
         self.variable = 'cabin'
     
@@ -25,24 +26,25 @@ class ExtractCabin(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         X = X.copy()
-        X['cabin_letter'] = X[self.variable].apply(lambda x: np.nan if x == '?' else x[0][0])
-        #X['cabin_letter'] = X[self.variable].apply(lambda x: ''.join(re.findall("[a-zA-Z]+", x)) if type(x)==str else x)
+        try:
+          X['cabin_letter'] = X[self.variable].apply(lambda x: np.nan if x == '?' else x[0][0])
+        except:
+          print('There is not variable cabin')
         return X
 
-class ExtractTitle(BaseEstimator, TransformerMixin):
 
+class ExtractTitle(BaseEstimator, TransformerMixin):
     """Extract the title name.
 
     Args:
-      input_string: string name.
 
     Returns:
-      The title name.
+      X: dataframe with new variable title, if exist name.
 
     Raises:
+      'There is not variable name'
 
     """
-    
     def __init__(self):
         self.variable = 'name'
     
@@ -51,19 +53,21 @@ class ExtractTitle(BaseEstimator, TransformerMixin):
     
     def transform(self, X):
         X = X.copy()
-        X['title'] = X[self.variable].apply(lambda x: x.split(',')[1].split('.')[0].strip())
-        
+        try:
+          X['title'] = X[self.variable].apply(lambda x: x.split(',')[1].split('.')[0].strip())
+        except:
+          print('There is not variable name')        
         return X
 
 class TypeConverter(object):
-    """Extract the title name.
+    """Tranform the data into correct type
 
     Args:
       numerical_features: List of numerical features
       categorical_features: List of categorical features
 
     Returns:
-      The title name.
+      X: datafra tranformed
 
     Raises:
 
@@ -91,13 +95,13 @@ class TypeConverter(object):
 
 
 class CategoricalImputer(BaseEstimator, TransformerMixin):
-    """Extract the title name.
+    """Impute a value for nans in categorical vars.
 
     Args:
       variables: List of variables.
 
     Returns:
-      The title name.
+      X: datafra tranformed
 
     Raises:
 
