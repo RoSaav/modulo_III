@@ -1,9 +1,9 @@
-## modulo_II
+## modulo_III
 
-Package to build a todo list
+Package to deploy a model
 
 Initially appeared on
-[gist](https://github.com/RoSaav/modulo_II).
+[gist](https://github.com/RoSaav/modulo_III).
 
 ## Getting Started
 
@@ -30,18 +30,20 @@ Run the next lines in a powershell
 -todos_env\Scripts\activate
 
 -pip install -r requirements.txt
+
+## Structure
+
+MODULO_III
+-TITANIC
+--app: Front-end deploymment with FastApi
+--data Initial data set Titanic
+--server Server for response deploymment with FastApi
+--train Training a machine learning model
+--utils Transformers for preprocessing
  
 ## Running the tests
 
-If you want to run test pre installation you can run all the test in project or unit/integration with the next lines
-
--tox -v
-
--pytest todos\tests\integration\test_integration.py -v
-
--pytest todos\tests\unit\test_create.py -v 
-
--pytest todos\tests\unit\test_add_task.py
+Every child carpet of Titanic is build as a individual project, so if you want to test every project, you have to zoom in in the folder
 
 ### Sample Tests
 
@@ -62,30 +64,11 @@ If you want to run test pre installation you can run all the test in project or 
 
 ## Deployment
 
-Install the package todos
--pip install dist\todos-0.1.0.tar.gz
-
-To use it follow the next lines ane find out an example
-
->>> from todos.src import todos
-
->>> todos.list_lists()
-
-my_first_todo_list.csv
-
->>> todos.show_list('my_first_todo_list') 
-
-|    | created             | task    | summary      | status   | owner   |
-
-|---:|:--------------------|:--------|:-------------|:---------|:--------|
-
-|  0 | 2022-10-17 22-51-32 | pruebas | update value | todo     | yo      |
-
-If you want know which methods there are check the documentation of each in todos.py
+The file include a docker compose to deployd a infrastructure of rest Api 
 
 ## Authors
 
-Homework for MODULO_II
+Homework for MODULO_III
 
 TECNOLOGICO DE MONTERREY
 
