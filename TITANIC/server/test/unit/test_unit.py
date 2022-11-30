@@ -7,7 +7,7 @@ import pandas as pd
 
 # Add root to sys.path
 # https://fortierq.github.io/python-import/
-sys.path.append( os.path.abspath(os.path.dirname(__file__)+'/../..'))
+sys.path.append( os.path.abspath(os.path.dirname(__file__)+'../..'))
 from classifier.classifier import TitanicClassifier
 from models.models import Titanic
 

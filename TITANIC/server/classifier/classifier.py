@@ -1,11 +1,12 @@
 import sys
 import os
+import joblib
 import pandas as pd
 import numpy as np
-from src_train.utils import preprocess_train
 sys.path.append( os.path.abspath(os.path.dirname(__file__)+'/../'))
 
 from server.models.models import Titanic
+
 
 class TitanicClassifier:
     def __init__(self):
@@ -15,17 +16,9 @@ class TitanicClassifier:
             1: 'survive',
         }
 
-    def train_model(self) -> preprocess_train:
-        model_pipeline = preprocess_train(
-                            data_path='TITANIC/data/phpMYEkMl.csv',
-                            drop_features=['boat','body','home.dest','cabin', 'name', 'ticket'],
-                            categorical_features=['title', 'cabin_letter', 'sex','embarked'],
-                            numerical_features=['pclass','age','sibsp','parch','fare'],
-                            target='survived',
-                            random_state=666,
-                            classifier='log',
-                            save_model=True
-        )
+    def train_model(self):
+        model_pipeline_path = sys.path[-1]+'/models/modelo_pipeline.joblib'
+        model_pipeline=joblib.load(model_pipeline_path)
         return model_pipeline
 
     def classify_titanic(self, titanic: Titanic):

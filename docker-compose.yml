@@ -14,7 +14,7 @@ services:
     #  - ./storage:/storage
 
   frontend:
-    build: TITANIC\server
+    build: TITANIC\app
     ports:
       - 3000:3000
     networks:
