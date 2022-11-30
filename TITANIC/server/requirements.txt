@@ -15,5 +15,5 @@ pycodestyle
 tox
 pydantic
 starlette
-TITANIC\utils\dist\src_utils-0.1.0.tar.gz
-TITANIC\train\dist\src_train-0.1.0.tar.gz
+https://github.com/RoSaav/modulo_III/blob/main/TITANIC/utils/dist/src_utils-0.1.0.tar.gz
+https://github.com/RoSaav/modulo_III/blob/main/TITANIC/train/dist/src_train-0.1.0.tar.gz
