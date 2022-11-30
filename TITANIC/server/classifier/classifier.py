@@ -3,9 +3,9 @@ import os
 import pandas as pd
 import numpy as np
 from src_train.utils import preprocess_train
-sys.path.append( os.path.abspath(os.path.dirname(__file__)+'/../..'))
+sys.path.append( os.path.abspath(os.path.dirname(__file__)+'/../'))
 
-import pdb;pdb.set_trace()
+from server.models.models import Titanic
 
 class TitanicClassifier:
     def __init__(self):
@@ -28,10 +28,15 @@ class TitanicClassifier:
         )
         return model_pipeline
 
-    def classify_iris(self, titanic: Titanic):
-        X = [iris.sepal_length, iris.sepal_width, iris.petal_length, iris.petal_width]
-        prediction = self.clf.predict_proba([X])
-        print({'class': self.iris_type[np.argmax(prediction)],
+    def classify_titanic(self, titanic: Titanic):
+        X = [titanic.pclass, titanic.name, titanic.sex, titanic.age, 
+             titanic.sibsp, titanic.parch, titanic.ticket, titanic.fare, 
+             titanic.cabin, titanic.embarked, titanic.boat, titanic.body, titanic.home_dest]
+
+        X = pd.DataFrame([X], columns = ['pclass', 'name', 'sex', 'age','sibsp', 'parch', 'ticket', 'fare','cabin', 'embarked', 'boat', 'body', 'home.dest'])
+
+        prediction = self.clf.predict_proba(X)
+        print({'class': self.survive_type[np.argmax(prediction)],
                 'probability': round(max(prediction[0]), 2)})
-        return {'class': self.iris_type[np.argmax(prediction)],
+        return {'class': self.survive_type[np.argmax(prediction)],
                 'probability': round(max(prediction[0]), 2)}

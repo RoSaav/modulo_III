@@ -14,4 +14,3 @@ class Titanic(BaseModel):
     boat: object;
     body: object;
     home_dest: object;
-
